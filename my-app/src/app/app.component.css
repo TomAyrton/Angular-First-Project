@@ -1,0 +1,63 @@
+.overlay {
+	z-index: 1;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.block {
+	padding: 10px 50px;
+	border-radius: 10px;
+	background: #fff;
+}
+
+.block p {
+	text-align: center;
+}
+
+.btns {
+	width: 60%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+tr:nth-child(2n) {
+	background: #f1f1f1;
+}
+
+td, th {
+	border: 1px solid #aaa;
+	padding: 3px 10px;
+}
+
+th {
+	text-transform: uppercase;
+	border: 1px solid #000;
+}
+
+td:nth-child(4), td:nth-child(5) {
+	text-align: right;
+}
+
+td:nth-child(6) {
+	text-align: center;
+}
+
+tbody .lose {
+	background: #ff5050;
+}
+
+tbody .found {
+	background: #50ff50;
+}

@@ -1,0 +1,43 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="overlay" *ngIf = "overlayDisplay">
+	<div class="block">
+		<p>Удалить студента?</p>
+		<div class="btns">
+			<input type="button" (click)="confirmRemove(student)" value="Да">
+			<input type="button" (click)="overlayDisplay = !overlayDisplay" value="Нет">
+		</div>
+	</div>
+</div>
+<h1>
+	Список студентов театрального училища.
+</h1>
+<p>
+	<input type="button" value="Отключить" (click) = "lose = !lose"> подсветку слабых студентов
+</p>
+<p>Найти студента по фамилии или имени: <input type="text" [(ngModel)] = "searchStr"></p>
+<p>Минимальный бал <input type="text" [(ngModel)] = "minPoint"> Максимальный бал <input type="text" [(ngModel)] = "maxPoint" ></p>
+<p>Минимальная дата: <input type="text" [(ngModel)] = "minDate" (change) = "newParse()"> Максимальная дата: <input type="text" [(ngModel)] = "maxDate" (change) = "newParse()"></p>
+<table>
+	<thead>
+		<tr>
+			<th>Имя <input type="radio" name="sort" (click) = "sortName()"></th>
+			<th>Фамилия <input type="radio" name="sort" (click) = "sortSurName()"></th>
+			<th>Отчество</th>
+			<th>Дата рождения <input type="radio" name="sort" (click) = "sortDateMS()"></th>
+			<th>Средний балл <input type="radio" name="sort" (click) = "sortAverageRating()"></th>
+			<th>Удалить</th>
+		</tr>
+	</thead>
+	<tbody>
+	<ng-container *ngFor = "let student of students">
+		<tr [class.lose] = "(student.averageRating < 3) && lose" [class.found] = "(student.name.indexOf(searchStr) !== -1 || student.surname.indexOf(searchStr) !== -1) && searchStr" *ngIf = "student.averageRating >= minPoint && student.averageRating <= maxPoint && !student.removePoint && student.dateMS >= minDateMS && student.dateMS <= maxDateMS">
+			<td>{{ student.name }}</td>
+			<td>{{ student.surname }}</td>
+			<td>{{ student.patronymic }}</td>
+			<td>{{ student.dateOfBirth }}</td>
+			<td>{{ student.averageRating }}</td>
+			<td><input type="button" value="Удалить" (click) = "removeStudent(student)"></td>
+		</tr>
+	</ng-container>
+	</tbody>
+</table>
